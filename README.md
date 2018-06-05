@@ -1,7 +1,7 @@
 
 # Musicology
 
-Generate scales and chords in any key and mode.
+Generate scales and chords in any key and mode. [**DEMO HERE**](https://pamblam.github.io/Musicology/).
 
 ### Usage
 
