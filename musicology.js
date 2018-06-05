@@ -3,7 +3,7 @@
 // https://www.guitarhabits.com/building-chords-and-progressions-of-the-minor-scale/
 // https://www.starlandmusic.com/piano-lesson-tips/find-notes-chord-guest-blogger-eric-myers/
 // https://www.piano-keyboard-guide.com/c-sharp-major-scale.html
-
+ 
 const Musicology = (function(){
 	
 	const WHOLE = 2;
@@ -66,7 +66,6 @@ const Musicology = (function(){
 	}
 	
 	function _getNotesStartingWith(note='C'){
-		note = note.toUpperCase();
 		var starting_idx = false;
 		var accidental = NATURAL;
 		for(var i=0; i<notes.length; i++){
@@ -91,14 +90,18 @@ const Musicology = (function(){
 		return {accidental: accidental, notes: n}
 	}
 	
+	function getNotes(){
+		return notes;
+	}
+	
 	function transposeNote(note, difference, accidental='') {
 		var n = _getNotesStartingWith(note);
 		if (!n) return false;
 		n = n.notes;
 		if (difference < 0) difference = n.length + difference;
 		var note = n[difference];
-		if (accidental == SHARP && note.indexOf("/")) note = note.substr(0, 2);
-		else if (accidental == FLAT && note.indexOf("/")) note = note.substr(3);
+		if (accidental == SHARP && ~note.indexOf("/")) note = note.substr(0, 2);
+		else if (accidental == FLAT && ~note.indexOf("/")) note = note.substr(3);
 		return note;
 	}
 	
@@ -111,7 +114,6 @@ const Musicology = (function(){
 	}
 	
 	function getChord(root='C', type='major'){
-		root = root.toUpperCase();
 		type = type.toLowerCase();
 		if(!chord_formulas[type]) return false;
 		var formula = chord_formulas[type]; 
@@ -126,25 +128,27 @@ const Musicology = (function(){
 		};
 		var chord = [];
 		for (var i = 0; i < formula.length; i++) chord.push(getNoteFromFormula(formula[i]));
+		chord = chord.map(n=>n.split("/")[0]);
 		return chord;
 	}
 	
 	function getScale(key='C', mode='major'){
 		mode = mode.toLowerCase();
 		if(!scale_patterns[mode]) return false;
-		key = key.toUpperCase();
 		var scale = [];
 		var n = _getNotesStartingWith(key);
 		if(n) n = n.notes;
 		else return false; 
 		for(var i=0, x=0; i<notes.length; i+=scale_patterns[mode][x], x++) scale.push(n[i]);
 		scale.push(key);
+		scale = scale.map(n=>n.split("/")[0]);
 		return scale;
 	}
 	
 	return {
 		getModesNames: getModesNames,
 		getChordTypes: getChordTypes,
+		getNotes: getNotes,
 		getScale: getScale,
 		transposeNote: transposeNote,
 		getChord: getChord
