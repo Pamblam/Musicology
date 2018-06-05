@@ -43,7 +43,7 @@ const Musicology = (function(){
 		'7th #9': ['1', '3', '5', 'b7', '#9'],
 		'major 9th': ['1', '3', '5', '7', '9'],
 		'added 9th': ['1', '3', '5', '9'],
-		'minor 9th': ['1', 'b3', '5', 'b7', '9'],
+		'minor 9th': ['1', 'b3', '5', 'b7', '9'], // C Eb G Bb D
 		'minor add 9th': ['1', 'b3', '5', '9'],
 		'11th': ['1', '3', '5', 'b7', '9', '11'],
 		'minor 11th': ['1', 'b3', '5', 'b7', '9', '11'],
@@ -117,13 +117,15 @@ const Musicology = (function(){
 		type = type.toLowerCase();
 		if(!chord_formulas[type]) return false;
 		var formula = chord_formulas[type]; 
-		var scale = getScale(root);
+		var scale = getScale(root); scale.pop();
 		var acc = _getScaleAccidental(scale);
 		const getNoteFromFormula = f => {
 			var add = 0;
 			while (f[0] == 'b') {add -= 1; f = f.substr(1)}
 			while (f[0] == '#') {add += 1; f = f.substr(1)}
-			var baseNote = scale[parseInt(f) - 1];
+			f = parseInt(f); if(f >= scale.length) f = f-scale.length;
+			if(f === 0) f = scale.length;
+			var baseNote = scale[f-1];
 			return transposeNote(baseNote, add, acc);
 		};
 		var chord = [];
