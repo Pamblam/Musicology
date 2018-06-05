@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<title>Music</title>
+
+		<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+		<!--[if lt IE 9]>
+			<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+			<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+		<![endif]-->
+	</head>
+	<body>
+		<nav class="navbar navbar-inverse navbar-static-top" role="navigation">
+			<div class="container">
+				<div class="navbar-header">
+					<a class="navbar-brand" href="#">Music</a>
+				</div>
+			</div>
+		</nav>
+
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<h1>Generate Scales</h1>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-6">
+					<div class="form-group">
+						<label for="key">Choose Key:</label>
+						<select class="form-control" id="key"></select>
+					</div> 
+				</div>
+				<div class="col-lg-6">
+					<div class="form-group">
+						<label for="mode">Choose Mode:</label>
+						<select class="form-control" id="mode"></select>
+					</div> 
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="table-responsive">
+						<table class="table" id='scalestable'>
+							<thead>
+								<tr>
+									<th></th>
+									<th>Tonic</th>
+									<th>Supertonic</th>
+									<th>Mediant</th>
+									<th>Subdominant</th>
+									<th>Dominant</th>
+									<th>Submediant</th>
+									<th>Subtonic</th>
+									<th>Tonic</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td colspan='9'>
+										<h3><span class='keylabel'></span> <span class='modename'></span> Scale Notes</h3>
+									</td>
+								</tr>
+								<tr>
+									<td></td>
+									<td id='degree1'></td>
+									<td id='degree2'></td>
+									<td id='degree3'></td>
+									<td id='degree4'></td>
+									<td id='degree5'></td>
+									<td id='degree6'></td>
+									<td id='degree7'></td>
+									<td id='degree8'></td>
+								</tr>
+								<tr>
+									<td colspan='9'>
+										<h3>Chords in Key of <span class='keylabel'></span></h3>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div> 
+				</div>
+			</div>
+		</div>
+
+		<script src="//code.jquery.com/jquery-2.2.4.min.js"></script>
+		<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<script src='../Musicology.js'></script>
+		<script src='app.js'></script>
+	</body>
+</html>
